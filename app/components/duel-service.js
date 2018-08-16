@@ -46,10 +46,10 @@ export default class DuelService {
     gameApi.post('', game)
       .then(res => {
         console.log(res)
-        let champion = res.data.game._champion.set(rawChampion => {
-          return new Champion(rawChampion)
-        })
-        callback(champion)
+        // let champion = res.data.game._champion.set(rawChampion => {
+        // return new Champion(rawChampion)
+
+        callback(res)
       })
   }
 }

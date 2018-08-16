@@ -34,7 +34,7 @@ function drawDragons(dragons) {
   document.getElementById("dragons").innerHTML = template
 }
 
-function drawGame(champion) {
+function drawGame(data) {
   document.getElementById('app').innerHTML = `
   <div class="row">
   <div class="col-sm-12 text-center">
@@ -44,9 +44,9 @@ function drawGame(champion) {
   `
   document.getElementById('champions').innerHTML = `
   <div class="col-sm-12">
-  <h3>Name: ${champion.name}</h3>
-  <h3>HP: ${champion.hp}<h3>
-  <img src='${champion.imgURL}' class="img-fluid" />
+  <h3>Name: ${data.data.game._champion.name}</h3>
+  <h3>HP: ${data.data.game._champion.hp}<h3>
+  <img src='${data.data.game._champion.imgURL}' class="img-fluid" />
   </div>
   `
 }
@@ -77,7 +77,7 @@ export default class DuelController {
     //   return
     // }
     console.log('game', this.newGameId)
-    ds.newGame(this.newGameId)
+    ds.newGame(this.newGameId, drawGame)
   }
 
 
