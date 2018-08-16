@@ -52,4 +52,8 @@ export default class DuelService {
         callback(res)
       })
   }
+
+  attack(attStr, gameId, callback) {
+
+  }
 }

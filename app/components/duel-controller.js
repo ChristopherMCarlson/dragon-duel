@@ -46,9 +46,31 @@ function drawGame(data) {
   <div class="col-sm-12">
   <h3>Name: ${data.data.game._champion.name}</h3>
   <h3>HP: ${data.data.game._champion.hp}<h3>
-  <img src='${data.data.game._champion.imgURL}' class="img-fluid" />
+  <img src='${data.data.game._champion.imgUrl}' class="img-fluid" />
   </div>
   `
+
+  document.getElementById('dragons').innerHTML = `
+  <div class="col-sm-12">
+  <h3>Name: ${data.data.game._dragon.name}</h3>
+  <h3>HP: ${data.data.game._dragon.currentHP}<h3>
+  <img src='${data.data.game._dragon.imgUrl}' class="img-fluid" />
+  <div class="row" id="champ-attacks">
+  <div class=col-sm-12>
+  </div>
+  </div>
+  </div>
+  `
+
+  let template = ''
+  let attacks = Object.keys(data.data.game._champion.attacks)
+  attacks.forEach(attack => {
+    template += `
+    <button onclick='${attack}' class='mx-2'>${attack}</button>
+    `
+  });
+
+  document.getElementById('champ-attacks').innerHTML = template
 }
 
 export default class DuelController {
@@ -80,5 +102,8 @@ export default class DuelController {
     ds.newGame(this.newGameId, drawGame)
   }
 
+  attack(attStr, gameId, drawGame) {
+    ds.attack(attStr, gameId, drawGame)
+  }
 
 }
